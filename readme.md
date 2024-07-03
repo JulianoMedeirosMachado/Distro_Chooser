@@ -12,7 +12,7 @@ Este é um sistema especialista em Python para ajudar os usuários a escolher um
 
 1. Clone o repositório:
     ```sh
-    git clone https://github.com/seu-usuario/linux-distro-chooser.git
+    git clone https://github.com/JulianoMedeirosMachado/linux-distro-chooser.git
     ```
 Vá até o diretório do projeto:
     ```sh
