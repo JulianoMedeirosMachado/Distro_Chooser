@@ -48,7 +48,7 @@ def get_user_preferences():
         '3': 'Jogos',
         '4': 'Servidor'
     })
-    preferences['purpose'] = get_valid_input("\033[92mEscolha uma opção (1/2/3/4): \033{0m", ['1', '2', '3', '4'])
+    preferences['purpose'] = get_valid_input("\033[92mEscolha uma opção (1/2/3/4): \033[0m", ['1', '2', '3', '4'])
 
     print_question("4. Qual é a configuração do seu hardware?", {
         '1': 'Baixo desempenho',
@@ -61,7 +61,7 @@ def get_user_preferences():
         '1': 'Sim',
         '2': 'Não'
     })
-    preferences['support'] = get_valid_input("\033[92mEscolha uma opção (1/2): \033{0m", ['1', '2'])
+    preferences['support'] = get_valid_input("\033[92mEscolha uma opção (1/2): \033[0m", ['1', '2'])
 
     print_question("6. Você prefere software de código aberto ou proprietário?", {
         '1': 'Código aberto',
@@ -157,7 +157,7 @@ def calculate_scores(preferences):
             if distro.name in ["Red Hat Enterprise Linux", "SUSE Linux Enterprise"]:
                 distro.add_points(3)
     
-       if preferences['experience'] == '1':
+        if preferences['experience'] == '1':
             if distro.name in ["Ubuntu", "Linux Mint"]:
                 distro.add_points(3)
  
