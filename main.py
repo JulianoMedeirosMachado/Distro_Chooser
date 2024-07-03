@@ -147,27 +147,42 @@ def calculate_scores(preferences):
     ]
 
     for distro in distributions:
-        if preferences['experience'] == '1':
+        if preferences['support'] == '1':
+            if distro.name in ["Ubuntu", "Arch Linux"]:
+                distro.add_points(2)
+        elif preferences['support'] == '2':
+            if distro.name in ["Debian", "Fedora"]:
+                distro.add_points(2)
+        elif preferences['support'] == '3':
+            if distro.name in ["Red Hat Enterprise Linux", "SUSE Linux Enterprise"]:
+                distro.add_points(3)
+    
+       if preferences['experience'] == '1':
             if distro.name in ["Ubuntu", "Linux Mint"]:
                 distro.add_points(3)
-            if preferences['desktop_environment'] == '2' and distro.name in ["Ubuntu", "Linux Mint"]:
-                distro.add_points(2)
-            elif preferences['desktop_environment'] == '1' and distro.name in ["Lubuntu", "Xubuntu"]:
-                distro.add_points(2)
-
+ 
         if preferences['experience'] == '2':
-            if preferences['purpose'] == '2' and distro.name in ["Fedora", "Debian"]:
-                distro.add_points(3)
-            elif preferences['purpose'] == '4' and distro.name in ["CentOS", "Debian"]:
-                distro.add_points(3)
-            else:
-                if distro.name in ["Debian", "openSUSE"]:
-                    distro.add_points(2)
+            if distro.name in ["Debian", "openSUSE"]:
+                distro.add_points(2)
 
-        if preferences['experience'] == '3':
-            if preferences['support'] == '1' and distro.name == "Red Hat Enterprise Linux":
+        if preferences['desktop_environment'] == '2':
+            if distro.name in ["Ubuntu", "Linux Mint"]:
+                distro.add_points(2)
+        elif preferences['desktop_environment'] == '1':
+            if distro.name in ["Lubuntu", "Xubuntu"]:
+                distro.add_points(2)
+
+        if preferences['purpose'] == '1':
+            if distro.name in ["Ubuntu", "Linux Mint"]:
+                distro.add_points(2)
+        elif preferences['purpose'] == '2':
+            if distro.name in ["Fedora", "Debian"]:
                 distro.add_points(3)
-            elif preferences['support'] == '2' and distro.name in ["Arch Linux", "Debian"]:
+        elif preferences['purpose'] == '3':
+            if distro.name in ["Ubuntu", "Fedora"]:
+                distro.add_points(2)
+        elif preferences['purpose'] == '4':
+            if distro.name in ["CentOS", "Debian"]:
                 distro.add_points(3)
 
         if preferences['hardware'] == '1' and distro.name in ["Lubuntu", "Xubuntu"]:
