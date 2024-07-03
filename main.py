@@ -48,7 +48,7 @@ def get_user_preferences():
         '3': 'Jogos',
         '4': 'Servidor'
     })
-    preferences['purpose'] = get_valid_input("\033[92mEscolha uma opção (1/2/3/4): \033[0m", ['1', '2', '3', '4'])
+    preferences['purpose'] = get_valid_input("\033[92mEscolha uma opção (1/2/3/4): \033{0m", ['1', '2', '3', '4'])
 
     print_question("4. Qual é a configuração do seu hardware?", {
         '1': 'Baixo desempenho',
@@ -61,7 +61,7 @@ def get_user_preferences():
         '1': 'Sim',
         '2': 'Não'
     })
-    preferences['support'] = get_valid_input("\033[92mEscolha uma opção (1/2): \033[0m", ['1', '2'])
+    preferences['support'] = get_valid_input("\033[92mEscolha uma opção (1/2): \033{0m", ['1', '2'])
 
     print_question("6. Você prefere software de código aberto ou proprietário?", {
         '1': 'Código aberto',
@@ -108,6 +108,26 @@ def get_user_preferences():
         '2': 'Não'
     })
     preferences['software_additional'] = get_valid_input("\033[92mEscolha uma opção (1/2): \033[0m", ['1', '2'])
+
+    print_question("13. Qual é a sua preferência por personalização e flexibilidade no sistema operacional?", {
+        '1': 'Baixa (Prefiro algo que funcione bem sem muitas modificações)',
+        '2': 'Média (Gosto de fazer algumas personalizações)',
+        '3': 'Alta (Quero ter total controle e flexibilidade sobre o sistema)'
+    })
+    preferences['customization'] = get_valid_input("\033[92mEscolha uma opção (1/2/3): \033[0m", ['1', '2', '3'])
+
+    print_question("14. Com que frequência você está disposto a atualizar o seu sistema?", {
+        '1': 'Raramente (Prefiro atualizações de longo prazo)',
+        '2': 'Ocasionalmente (Estou disposto a fazer atualizações periódicas)',
+        '3': 'Frequentemente (Quero sempre as últimas atualizações e recursos)'
+    })
+    preferences['update_frequency'] = get_valid_input("\033[92mEscolha uma opção (1/2/3): \033[0m", ['1', '2', '3'])
+
+    print_question("15. Você tem preferência por uma distribuição que possua uma vasta quantidade de documentações e tutoriais disponíveis online?", {
+        '1': 'Sim (Prefiro distribuições bem documentadas)',
+        '2': 'Não (Não é um fator determinante para mim)'
+    })
+    preferences['documentation'] = get_valid_input("\033[92mEscolha uma opção (1/2): \033[0m", ['1', '2'])
 
     return preferences
 
@@ -194,6 +214,25 @@ def calculate_scores(preferences):
             distro.add_points(1)
 
         if preferences['software_additional'] == '1' and distro.name in ["Ubuntu", "Fedora", "Arch Linux"]:
+            distro.add_points(2)
+
+        if preferences['customization'] == '1' and distro.name in ["Ubuntu", "Linux Mint"]:
+            distro.add_points(1)
+        elif preferences['customization'] == '2' and distro.name in ["Fedora", "openSUSE"]:
+            distro.add_points(2)
+        elif preferences['customization'] == '3' and distro.name in ["Arch Linux", "Debian"]:
+            distro.add_points(3)
+
+        if preferences['update_frequency'] == '1' and distro.name in ["Debian", "CentOS"]:
+            distro.add_points(3)
+        elif preferences['update_frequency'] == '2' and distro.name in ["Ubuntu", "Fedora"]:
+            distro.add_points(2)
+        elif preferences['update_frequency'] == '3' and distro.name in ["Arch Linux", "Fedora"]:
+            distro.add_points(1)
+
+        if preferences['documentation'] == '1' and distro.name in ["Ubuntu", "Arch Linux", "Debian"]:
+            distro.add_points(3)
+        elif preferences['documentation'] == '2' and distro.name in ["CentOS", "Red Hat Enterprise Linux"]:
             distro.add_points(2)
 
     return distributions
