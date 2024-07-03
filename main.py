@@ -148,28 +148,29 @@ def calculate_scores(preferences):
 
     for distro in distributions:
         if preferences['support'] == '1':
-            if distro.name in ["Ubuntu", "Arch Linux"]:
+            if distro.name in ["Ubuntu", "Red Hat Enterprise Linux"]:
                 distro.add_points(2)
         elif preferences['support'] == '2':
-            if distro.name in ["Debian", "Fedora"]:
+            if distro.name in ["Debian", "Arch Linux"]:
                 distro.add_points(2)
-        elif preferences['support'] == '3':
-            if distro.name in ["Red Hat Enterprise Linux", "SUSE Linux Enterprise"]:
-                distro.add_points(3)
     
         if preferences['experience'] == '1':
             if distro.name in ["Ubuntu", "Linux Mint"]:
-                distro.add_points(3)
+                distro.add_points(2)
  
         if preferences['experience'] == '2':
             if distro.name in ["Debian", "openSUSE"]:
                 distro.add_points(2)
 
+        if preferences['experience'] == '3':
+            if distro.name in ["Arch Linux"]:
+                distro.add_points(2)
+
         if preferences['desktop_environment'] == '2':
-            if distro.name in ["Ubuntu", "Linux Mint"]:
+            if distro.name in ["Ubuntu", "Fedora"]:
                 distro.add_points(2)
         elif preferences['desktop_environment'] == '1':
-            if distro.name in ["Lubuntu", "Xubuntu"]:
+            if distro.name in ["Lubuntu", "Xubuntu", "Linux Mint"]:
                 distro.add_points(2)
 
         if preferences['purpose'] == '1':
@@ -177,13 +178,13 @@ def calculate_scores(preferences):
                 distro.add_points(2)
         elif preferences['purpose'] == '2':
             if distro.name in ["Fedora", "Debian"]:
-                distro.add_points(3)
+                distro.add_points(2)
         elif preferences['purpose'] == '3':
             if distro.name in ["Ubuntu", "Fedora"]:
                 distro.add_points(2)
         elif preferences['purpose'] == '4':
             if distro.name in ["CentOS", "Debian"]:
-                distro.add_points(3)
+                distro.add_points(6)
 
         if preferences['hardware'] == '1' and distro.name in ["Lubuntu", "Xubuntu"]:
             distro.add_points(3)
@@ -197,7 +198,7 @@ def calculate_scores(preferences):
         elif preferences['software'] == '2' and distro.name in ["Ubuntu", "Linux Mint"]:
             distro.add_points(2)
 
-        if preferences['release'] == '1' and distro.name in ["Debian", "CentOS"]:
+        if preferences['release'] == '1' and distro.name in ["Debian", "CentOS", "Ubuntu"]:
             distro.add_points(3)
         elif preferences['release'] == '2' and distro.name in ["Fedora", "Arch Linux"]:
             distro.add_points(3)
@@ -214,7 +215,7 @@ def calculate_scores(preferences):
         elif preferences['package_manager'] == '3' and distro.name == "Arch Linux":
             distro.add_points(2)
         elif preferences['package_manager'] == '4' and distro.name == "openSUSE":
-            distro.add_points(2)
+            distro.add_points(6)
         elif preferences['package_manager'] == '5':
             distro.add_points(1)
 
@@ -222,33 +223,33 @@ def calculate_scores(preferences):
             distro.add_points(2)
 
         if preferences['security'] == '1' and distro.name in ["Debian", "Fedora", "Arch Linux"]:
-            distro.add_points(3)
+            distro.add_points(2)
         elif preferences['security'] == '2' and distro.name in ["Ubuntu", "openSUSE"]:
             distro.add_points(2)
         elif preferences['security'] == '3' and distro.name in ["Linux Mint"]:
-            distro.add_points(1)
+            distro.add_points(2)
 
-        if preferences['software_additional'] == '1' and distro.name in ["Ubuntu", "Fedora", "Arch Linux"]:
+        if preferences['software_additional'] == '1' and distro.name in ["Ubuntu", "Fedora"]:
             distro.add_points(2)
 
         if preferences['customization'] == '1' and distro.name in ["Ubuntu", "Linux Mint"]:
-            distro.add_points(1)
+            distro.add_points(2)
         elif preferences['customization'] == '2' and distro.name in ["Fedora", "openSUSE"]:
             distro.add_points(2)
         elif preferences['customization'] == '3' and distro.name in ["Arch Linux", "Debian"]:
-            distro.add_points(3)
+            distro.add_points(2)
 
         if preferences['update_frequency'] == '1' and distro.name in ["Debian", "CentOS"]:
-            distro.add_points(3)
+            distro.add_points(2)
         elif preferences['update_frequency'] == '2' and distro.name in ["Ubuntu", "Fedora"]:
             distro.add_points(2)
         elif preferences['update_frequency'] == '3' and distro.name in ["Arch Linux", "Fedora"]:
-            distro.add_points(1)
+            distro.add_points(2)
 
         if preferences['documentation'] == '1' and distro.name in ["Ubuntu", "Arch Linux", "Debian"]:
             distro.add_points(3)
         elif preferences['documentation'] == '2' and distro.name in ["CentOS", "Red Hat Enterprise Linux"]:
-            distro.add_points(2)
+            distro.add_points(3)
 
     return distributions
 
